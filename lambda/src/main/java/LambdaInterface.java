@@ -1,8 +1,8 @@
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 @FunctionalInterface
-public interface LambdaInterface {
-    public void function(Integer a,Integer b);
+public interface LambdaInterface<T> {
+    int function(T a,T b);
     public default void defFunction(){
         System.out.println("defFunction is Moving");
     }
