@@ -1,15 +1,13 @@
 package lupe.springbootwithredis;
 
+import lupe.objects.car.Car;
+import lupe.objects.car.Wheel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.dao.DataAccessException;
-import org.springframework.data.redis.core.BoundValueOperations;
-import org.springframework.data.redis.core.RedisOperations;
-import org.springframework.data.redis.core.SessionCallback;
-import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.data.redis.core.*;
 
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 @SpringBootTest
@@ -17,6 +15,9 @@ class SpringBootWithRedisApplicationTests {
 
     @Autowired
     private StringRedisTemplate redisTemplateForString;
+
+    @Autowired
+    private RedisTemplate redisTemplate;
 
 
     /*
@@ -29,6 +30,8 @@ class SpringBootWithRedisApplicationTests {
         redisTemplateForString.opsForValue().set("a", "b");
         redisTemplateForString.opsForValue().set("c", "d");
         redisTemplateForString.opsForValue().set("e", "f");
+
+
 
         //修改Value
         BoundValueOperations aBounder = redisTemplateForString.boundValueOps("a");
@@ -46,11 +49,13 @@ class SpringBootWithRedisApplicationTests {
 
     }
 
+
+    //实现事务操作
     @Test
     void test1() {
 
-        //1.
-/*        //注意：如果这样写的话会产生异常而且我查阅资料不能解决这个问题
+        //1.方式一
+/*      //注意：如果这样写的话会产生异常而且我查阅资料不能解决这个问题
         redisTemplateForString.setEnableTransactionSupport(true);//允许执行事务
         redisTemplateForString.multi();//开启事务
         redisTemplateForString.opsForValue().set("c","d");
@@ -71,6 +76,33 @@ class SpringBootWithRedisApplicationTests {
         };
         //使用核心来执行它
             System.out.println(redisTemplateForString.execute(sessionCallback));
+    }
+
+
+    @Test
+    public void test2() {
+
+        Wheel wheel = new Wheel();
+
+        Car car = new Car("a", "b",wheel);
+
+/*        //1.操作hash数据结构，存个车车吧 但是发现还是有乱码现象 不知道怎么解决
+        HashOperations hashOperations = redisTemplate.opsForHash();
+        hashOperations.put(car.getClass().getName(), "name", car.getName());
+        hashOperations.put(car.getClass().getName(), "age", car.getAge());
+        hashOperations.delete(car.getClass().getName(), "name");
+        hashOperations.delete(car.getClass().getName(), "age");*/
+
+
+
+        //2.
+        HashOperations<String, String, Object> hashOperations = redisTemplateForString.opsForHash();
+        hashOperations.put("car", "name", car.getName());
+        hashOperations.put("car", "age", car.getAge());
+        hashOperations.put("car", "wheel", car.getWheel().toString());
+        System.out.println(hashOperations.get("car", "name"));
+        System.out.println(hashOperations.get("car", "age"));
+        System.out.println(hashOperations.get("car", "wheel"));
     }
 
 
