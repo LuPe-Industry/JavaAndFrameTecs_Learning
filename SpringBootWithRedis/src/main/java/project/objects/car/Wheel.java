@@ -1,4 +1,4 @@
-package lupe.objects.car;
+package project.objects.car;
 
 import java.io.Serializable;
 

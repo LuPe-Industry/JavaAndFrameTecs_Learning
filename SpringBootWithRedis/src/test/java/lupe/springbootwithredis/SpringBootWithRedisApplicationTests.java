@@ -1,7 +1,7 @@
 package lupe.springbootwithredis;
 
-import lupe.objects.car.Car;
-import lupe.objects.car.Wheel;
+import project.objects.car.Car;
+import project.objects.car.Wheel;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
