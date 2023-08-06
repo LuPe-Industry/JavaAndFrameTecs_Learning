@@ -20,23 +20,10 @@ public class AController4EasyTests implements ApplicationContextAware {
         this.app = applicationContext;
     }
 
-    @RequestMapping("/good")
-    public void  fun(){
-//        System.out.println(project.app);
-//        Object project.myController = project.app.getBean("project.myController");
-//        System.out.println(project.myController);
-//        Object myDog = app.getBean("myDog");
-//        System.out.println(myDog);
-//        Object myCar = app.getBean("car");
-//        System.out.println(myCar);
-//        Object myCar2 = app.getBean("myCar2");
-//        System.out.println(myCar2);
+    @RequestMapping("/yes")
+    public String  fun(){
         System.out.println("yes");
-
-        //创建一个包含1到10的随机数数组
-
-
-
+        return "yes";
 
     }
 

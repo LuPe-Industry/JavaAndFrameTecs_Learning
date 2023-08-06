@@ -9,15 +9,15 @@ spring:
   redis:
     port: 6379
     host: 123.60.163.230
-  kafka:
-    bootstrap-servers: 123.60.163.230:9092 #这个是你server.properties中配置的
-    producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
-    consumer:
-      group-id: springTest01
-      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#  kafka:
+#    bootstrap-servers: 123.60.163.230:9092 #这个是你server.properties中配置的
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+#    consumer:
+#      group-id: springTest01
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
 
 eureka:
   client:
