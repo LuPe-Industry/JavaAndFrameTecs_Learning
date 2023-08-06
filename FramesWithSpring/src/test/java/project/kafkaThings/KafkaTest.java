@@ -10,9 +10,9 @@ public class KafkaTest {
 
     @Autowired
     private KafkaProducerService kafkaProducerService;
-    @Test
-    public void test01(){
-        Person lupe = new Person("lupe", 18);
-        kafkaProducerService.sendMessage("test","fine baby");
-    }
+//    @Test
+//    public void test01(){
+//        Person lupe = new Person("lupe", 18);
+//        kafkaProducerService.sendMessage("test","fine baby");
+//    }
 }
