@@ -1,0 +1,7 @@
+#华为云
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: Danta123.
+    url: jdbc:mysql://123.60.163.230:3306/lupetest?serverTimezone=Asia/Shanghai

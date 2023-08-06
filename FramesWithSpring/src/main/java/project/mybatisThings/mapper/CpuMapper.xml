@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatisThings.mapper.CpuMapper">
+
+    <resultMap id="BaseResultMap" type="project.mybatisThings.entity.Cpu">
+            <id property="id" column="ID" jdbcType="INTEGER"/>
+            <result property="cpuPrice" column="CPU_PRICE" jdbcType="VARCHAR"/>
+            <result property="cpuName" column="CPU_NAME" jdbcType="VARCHAR"/>
+            <result property="cpuPerformance" column="CPU_PERFORMANCE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,CPU_PRICE,CPU_NAME,
+        CPU_PERFORMANCE
+    </sql>
+
+
+</mapper>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatisThings.mapper.GpuMapper">
+
+    <resultMap id="BaseResultMap" type="project.mybatisThings.entity.Gpu">
+            <id property="id" column="ID" jdbcType="INTEGER"/>
+            <result property="gpuName" column="GPU_NAME" jdbcType="VARCHAR"/>
+            <result property="gpuPrice" column="GPU_PRICE" jdbcType="VARCHAR"/>
+            <result property="gpuPerformance" column="GPU_PERFORMANCE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        ID,GPU_NAME,GPU_PRICE,
+        GPU_PERFORMANCE
+    </sql>
+
+
+</mapper>

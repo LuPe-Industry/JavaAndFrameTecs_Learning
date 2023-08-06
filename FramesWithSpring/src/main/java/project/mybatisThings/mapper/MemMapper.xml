@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatisThings.mapper.MemMapper">
+
+    <resultMap id="BaseResultMap" type="project.mybatisThings.entity.Mem">
+            <id property="id" column="ID" jdbcType="INTEGER"/>
+            <result property="memName" column="MEM_NAME" jdbcType="VARCHAR"/>
+            <result property="memPrice" column="MEM_PRICE" jdbcType="VARCHAR"/>
+            <result property="menPerformance" column="MEN_PERFORMANCE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+
+</mapper>

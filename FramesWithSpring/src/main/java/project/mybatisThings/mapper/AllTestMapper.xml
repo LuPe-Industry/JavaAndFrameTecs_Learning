@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project.mybatisThings.mapper.AllTestMapper">
+
+    <sql id="Base_Column_List">
+        CPU_PRICE,CPU_NAME,
+        CPU_PERFORMANCE,GPU_NAME,GPU_PRICE,
+        GPU_PERFORMANCE
+    </sql>
+    <resultMap id="BaseResultMap" type="project.mybatisThings.vo.Bundle1">
+        <result property="cpu.cpuPrice" column="CPU_PRICE" jdbcType="VARCHAR"/>
+        <result property="cpu.cpuName" column="CPU_NAME" jdbcType="VARCHAR"/>
+        <result property="cpu.cpuPerformance" column="CPU_PERFORMANCE" jdbcType="VARCHAR"/>
+        <result property="gpu.gpuName" column="GPU_NAME" jdbcType="VARCHAR"/>
+        <result property="gpu.gpuPrice" column="GPU_PRICE" jdbcType="VARCHAR"/>
+        <result property="gpu.gpuPerformance" column="GPU_PERFORMANCE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <resultMap id="multipleBundleMap" type="project.mybatisThings.vo.Bundle2">
+        <result property="Country" column="COUNTRY" jdbcType="VARCHAR"/>
+        <result property="CountryID" column="COUNTRY_ID" jdbcType="VARCHAR"/>
+        <collection property="Mems" ofType="project.mybatisThings.entity.Mem">
+            <result property="memName" column="MEM_NAME" jdbcType="VARCHAR"/>
+            <result property="memPrice" column="MEM_PRICE" jdbcType="VARCHAR"/>
+            <result property="menPerformance" column="MEN_PERFORMANCE" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+    <select id="selectBundle1" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/> from BUNDLE1
+        where CPU_NAME = 'intel13400'
+    </select>
+
+    <select id="multipleBundle" resultMap="multipleBundleMap">
+        select * from COUNTRY_MEM
+        where COUNTRY = 'CH'
+    </select>
+
+    <insert id="insertOneCpu">
+        insert into CPU(CPU_PRICE,CPU_NAME,CPU_PERFORMANCE) values (#{cpu.cpuPrice},#{cpu.cpuName},#{cpu.cpuPerformance})
+    </insert>
+
+    <insert id="insertMultipleCpu">
+        insert into CPU(CPU_PRICE,CPU_NAME,CPU_PERFORMANCE) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.cpuPrice},#{item.cpuName},#{item.cpuPerformance})
+        </foreach>
+    </insert>
+
+    <select id="selectSomeCpu" resultType="project.mybatisThings.entity.Cpu">
+        select * from CPU
+        <where>
+            CPU_NAME like concat('%',#{name},'%')
+        </where>
+
+
+    </select>
+
+    <insert id="insertOneCpuSpecial02" parameterType="project.mybatisThings.entity.Cpu" useGeneratedKeys="true" keyProperty="id">
+        insert into CPU(CPU_PRICE,CPU_NAME,CPU_PERFORMANCE) values (#{cpuPrice},#{cpuName},#{cpuPerformance})
+    </insert>
+
+    <insert id="insertCpuWithMap" parameterType="hashmap" useGeneratedKeys="true" keyProperty="id">
+        insert into CPU(CPU_PRICE,CPU_NAME,CPU_PERFORMANCE) values (#{cpuPrice},#{cpuName},#{cpuPerformance})
+    </insert>
+
+
+</mapper>
