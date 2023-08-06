@@ -8,8 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.core.*;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
 import project.projectDomains.Person;
-import project.redisThings.objects.car.Car;
-import project.redisThings.objects.car.Wheel;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -89,9 +88,9 @@ class redisTests {
     @Test
     public void test2() {
 
-        Wheel wheel = new Wheel();
-
-        Car car = new Car("a", "b",wheel);
+//        Wheel wheel = new Wheel();
+//
+//        Car car = new Car("a", "b",wheel);
 
 /*        //1.操作hash数据结构，存个车车吧 但是发现还是有乱码现象 不知道怎么解决
         HashOperations hashOperations = redisTemplate.opsForHash();
@@ -102,14 +101,14 @@ class redisTests {
 
 
 
-        //2.
-        HashOperations<String, String, Object> hashOperations = redisTemplateForString.opsForHash();
-        hashOperations.put("car", "name", car.getName());
-        hashOperations.put("car", "age", car.getAge());
-        hashOperations.put("car", "wheel", car.getWheel().toString());
-        System.out.println(hashOperations.get("car", "name"));
-        System.out.println(hashOperations.get("car", "age"));
-        System.out.println(hashOperations.get("car", "wheel"));
+//        //2.
+//        HashOperations<String, String, Object> hashOperations = redisTemplateForString.opsForHash();
+//        hashOperations.put("car", "name", car.getName());
+//        hashOperations.put("car", "age", car.getAge());
+//        hashOperations.put("car", "wheel", car.getWheel().toString());
+//        System.out.println(hashOperations.get("car", "name"));
+//        System.out.println(hashOperations.get("car", "age"));
+//        System.out.println(hashOperations.get("car", "wheel"));
     }
 
     @Test
