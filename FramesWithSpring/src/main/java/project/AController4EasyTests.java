@@ -6,6 +6,8 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.logging.StreamHandler;
+
 @RestController
 @RequestMapping("/appController")
 public class AController4EasyTests implements ApplicationContextAware {
@@ -23,6 +25,8 @@ public class AController4EasyTests implements ApplicationContextAware {
     @RequestMapping("/yes")
     public String  fun(){
         System.out.println("yes");
+
+        ProcessBuilder processBuilder = new ProcessBuilder();
         return "yes";
 
     }
