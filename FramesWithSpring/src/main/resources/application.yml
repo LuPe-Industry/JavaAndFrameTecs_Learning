@@ -5,7 +5,7 @@ spring:
     name: FramesWithSpring # 设置当前应用的名称。将来会在eureka中Application显示。将来需要使用该名称来获取路径
   #数据库配置文件地址
   config:
-    import: "classpath:config/database-config.yml"
+    import: config/database-config.yml
   redis:
     port: 6379
     host: 123.60.163.230
@@ -25,11 +25,6 @@ eureka:
       defaultZone: http://123.60.163.230:8761/eureka # eureka服务端地址，将来客户端使用该地址和eureka进行通信
 
 
-#mybatis配置文件
-mybatis:
-  log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
-  config-location: classpath:config/mybatis-config.xml
-  #给插件用的
 
 
 
